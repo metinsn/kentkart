@@ -8,7 +8,7 @@ namespace kentkart
         Ogrenci,
         Ogretmen
     }
-    class kart
+    public class kart
     {
         public int kartid { get; set; }
         public double _bakiye;
@@ -32,11 +32,9 @@ namespace kentkart
 
         public override string ToString()
         {
-            return base.ToString();
-            {
-                return kartid + "\t" + bakiye + "\t" + kartturu;
-            }
+
+            return kartid + "\t" + bakiye + "\t" + kartturu;
         }
 
     }
-    }
+}
