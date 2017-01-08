@@ -61,6 +61,7 @@
             // grpboxOkulAdi
             // 
             this.grpboxOkulAdi.Controls.Add(this.txtboxOkulAdi);
+            this.grpboxOkulAdi.Enabled = false;
             this.grpboxOkulAdi.Location = new System.Drawing.Point(93, 65);
             this.grpboxOkulAdi.Name = "grpboxOkulAdi";
             this.grpboxOkulAdi.Size = new System.Drawing.Size(161, 54);

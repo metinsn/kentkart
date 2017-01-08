@@ -12,10 +12,16 @@ namespace kentkart
 {
     public partial class Form1 : Form
     {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
         public Form1(kart yolcu)
         {
             InitializeComponent();
         }
+
         OgrenciKart ogrenci = new OgrenciKart();
         OgretmenKart ogretmen = new OgretmenKart();
         kart tam = new kart();

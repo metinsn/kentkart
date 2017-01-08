@@ -2,7 +2,7 @@
 
 namespace kentkart
 {
-    enum YolcuTipi
+    public enum YolcuTipi
     {
         Tam,
         Ogrenci,
