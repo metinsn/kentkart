@@ -25,6 +25,7 @@ namespace kentkart
 
             Form1 frm = new kentkart.Form1(gelenyolcu);
             frm.ShowDialog();
+            this.Hide();
         }
     }
 }

@@ -20,8 +20,8 @@ namespace kentkart
         OgretmenKart ogretmen = new OgretmenKart();
         kart tam = new kart();
         int kartid = 1;
-        static List<Kart> kalıcıliste= new List<kart>();
-
+        static List<kart> kalıcıliste= new List<kart>();
+        
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
@@ -34,6 +34,7 @@ namespace kentkart
                 ogrenci.okuladi = txtboxOkulAdi.Text;
                 ogrenci.kartturu = YolcuTipi.Ogrenci;
                 lstBoxYolcular.Items.Add(ogrenci);
+                kalıcıliste.Add(ogrenci);
             }
             else if (rbtnOgretmen.Checked)
             {
@@ -42,6 +43,7 @@ namespace kentkart
                 kartid++;
                 ogretmen.kartturu = YolcuTipi.Ogretmen;
                 lstBoxYolcular.Items.Add(ogretmen);
+                kalıcıliste.Add(ogretmen);
             }
             else if (rbtnTam.Checked)
             {
@@ -50,6 +52,7 @@ namespace kentkart
                 kartid++;
                 tam.kartturu = YolcuTipi.Tam;
                 lstBoxYolcular.Items.Add(tam);
+                kalıcıliste.Add(tam);
             }
             Temizle();
         }
@@ -70,21 +73,22 @@ namespace kentkart
         {
             //var yolcu = lstBoxYolcular.SelectedItem;
             kart yolcu = (kart)lstBoxYolcular.SelectedItem;
-            if (yolcu.kartturu == YolcuTipi.Ogrenci && Convert.ToInt32( txtBakiye) <=0)
+
+            if (yolcu.kartturu == YolcuTipi.Ogrenci && yolcu.bakiye - 1 >= 0)
             {
                 lstBoxYolcular.Items.RemoveAt(lstBoxYolcular.SelectedIndex);
                 ogrenci = (OgrenciKart)yolcu;
                 ogrenci.Okut();
                 lstBoxYolcular.Items.Add(ogrenci);
             }
-            else if (yolcu.kartturu == YolcuTipi.Ogretmen && Convert.ToInt32(txtBakiye) <= 0)
+            else if (yolcu.kartturu == YolcuTipi.Ogretmen && yolcu.bakiye - 2 >= 0)
             {
                 lstBoxYolcular.Items.RemoveAt(lstBoxYolcular.SelectedIndex);
                 ogretmen = (OgretmenKart)yolcu;
                 ogretmen.Okut();
                 lstBoxYolcular.Items.Add(ogretmen);
             }
-            else if (yolcu.kartturu == YolcuTipi.Tam && Convert.ToInt32(txtBakiye) <= 0)
+            else if (yolcu.kartturu == YolcuTipi.Tam && yolcu.bakiye -3 >= 0)
             {
                 lstBoxYolcular.Items.RemoveAt(lstBoxYolcular.SelectedIndex);
                 tam = yolcu;
@@ -96,13 +100,23 @@ namespace kentkart
                 MessageBox.Show("Yetersiz Bakiye ! ");
                 DialogResult result = MessageBox.Show("Bakiye Yüklemek İstermisiniz ?", "Bildirim Ekranı",
                     MessageBoxButtons.YesNo);
+
                 if (result == DialogResult.Yes)
                 {
                     Form2 form2 = new Form2(yolcu);
                     form2.Show();
+                    this.Hide();
                 }
             }
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            foreach (var item in kalıcıliste)
+            {
+                lstBoxYolcular.Items.Add(item);
+            }
         }
     }
 }
